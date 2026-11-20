@@ -1,4 +1,4 @@
-name: Tests
+name: Portable Node tests
 on:
   pull_request:
   push:
@@ -18,4 +18,43 @@ jobs:
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
         with:
           node-version: '22'
-      - run: node --test tests/*.test.js
+      # Remaining tests require locally supplied copyrighted game BIN/reference images.
+      - name: Run portable regression tests
+        shell: bash
+        run: |
+          node --test \
+            tests/all-pot-drops.test.js \
+            tests/ass2-downloads.test.js \
+            tests/ass2.test.js \
+            tests/boss-rooms.test.js \
+            tests/build-stuff.test.js \
+            tests/container-drops.test.js \
+            tests/copy-tile.test.js \
+            tests/core.test.js \
+            tests/disc-stage.test.js \
+            tests/edit-session.test.js \
+            tests/elemental-weapons.test.js \
+            tests/enemy-elements.test.js \
+            tests/entity-editor.test.js \
+            tests/entity-repack.test.js \
+            tests/entity-templates.test.js \
+            tests/extra-hacks-ui.test.js \
+            tests/file-picker.test.js \
+            tests/kidlat-thunder.test.js \
+            tests/menu-element-line.test.js \
+            tests/play-card.test.js \
+            tests/play-page.test.js \
+            tests/play.test.js \
+            tests/pot-slot-repair.test.js \
+            tests/prize-drops.test.js \
+            tests/reverse-caverns-drops.test.js \
+            tests/richter-crash-recovery.test.js \
+            tests/richter-stopwatch-crash.test.js \
+            tests/room-gfx.test.js \
+            tests/safe-save.test.js \
+            tests/shop.test.js \
+            tests/spell-mp.test.js \
+            tests/stat-buffs.test.js \
+            tests/stats-bin.test.js \
+            tests/stats-core.test.js \
+            tests/title-credits.test.js
